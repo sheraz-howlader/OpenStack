@@ -1,3 +1,16 @@
+01. Database + RabbitMQ + Memcached
+02. Keystone (Identity)
+03. admin-openrc.sh
+04. Glance (Image Service)
+05. Placement
+06. Nova (Compute + Controller)
+08. Neutron (Networking)
+09. Horizon (Dashboard)
+10. Verify
+
+════════════════════<>════════════════════
+Verify
+════════════════════<>════════════════════
 Verify (সব ঠিক হলে):
 source /root/admin-openrc.sh
 openstack service list
@@ -17,3 +30,7 @@ sudo systemctl restart apache2
 sudo systemctl restart nova-api nova-scheduler nova-conductor
 sudo systemctl restart neutron-server
 
+Nova upgrade checks:
+sudo nova-status upgrade check
+
+════════════════════<>════════════════════

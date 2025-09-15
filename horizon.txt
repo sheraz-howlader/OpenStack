@@ -1,0 +1,14 @@
+Install
+════════════════════<>════════════════════
+sudo apt install openstack-dashboard -y
+sudo systemctl restart apache2
+
+════════════════════<>════════════════════
+Browser:
+════════════════════<>════════════════════
+http://104.250.139.46/horizon
+
+User: admin
+Pass: ADMIN_PASS
+
+════════════════════<>════════════════════

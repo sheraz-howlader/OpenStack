@@ -1,0 +1,48 @@
+Create Database
+════════════════════<>════════════════════
+sudo mysql -u root -p
+
+CREATE DATABASE keystone;
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'KEYSTONE_DBPASS';
+FLUSH PRIVILEGES;
+exit;
+
+════════════════════<>════════════════════
+Install Keystone
+════════════════════<>════════════════════
+sudo apt install keystone -y
+
+════════════════════<>════════════════════
+vim /etc/keystone/keystone.conf
+════════════════════<>════════════════════
+[database]
+connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@localhost/keystone
+
+[token]
+provider = fernet
+
+Test manually:
+    mysql -ukeystone -pKEYSTONE_DBPASS -h localhost keystone
+    If this fails, Keystone can’t reach its DB → fix password, grants, or networking.
+
+════════════════════<>════════════════════
+Sync Keystone Database
+════════════════════<>════════════════════
+sudo keystone-manage db_sync
+
+Fernet Key Setup করুন
+sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+
+════════════════════<>════════════════════
+Admin Token & Service Configuration:
+════════════════════<>════════════════════
+sudo keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
+  --bootstrap-admin-url http://206.162.244.147:5000/v3/ \
+  --bootstrap-internal-url http://206.162.244.147:5000/v3/ \
+  --bootstrap-public-url http://206.162.244.147:5000/v3/ \
+  --bootstrap-region-id RegionOne
+
+════════════════════<>════════════════════
+Apache2 Restart:
+    sudo systemctl restart apache2

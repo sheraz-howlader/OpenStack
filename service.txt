@@ -1,4 +1,4 @@
-service project create:
+create service project:
     openstack project create --domain Default --description "Service Project" service
 
 delete service/endpoint:
