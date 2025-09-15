@@ -1,0 +1,23 @@
+MySQL & Message Queue Install
+<!--OpenStack Database এবং Messaging এর জন্য প্রয়োজন-->
+
+════════════════════<>════════════════════
+Install MariaDB
+════════════════════<>════════════════════
+sudo apt install mariadb-server python3-pymysql -y
+sudo mysql_secure_installation
+
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+
+════════════════════<>════════════════════
+Install RabbitMQ (Message Queue)
+════════════════════<>════════════════════
+sudo apt install rabbitmq-server -y
+
+sudo systemctl enable rabbitmq-server
+sudo systemctl start rabbitmq-server
+
+sudo rabbitmqctl add_user openstack RABBIT_PASS
+sudo rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+════════════════════<>════════════════════
