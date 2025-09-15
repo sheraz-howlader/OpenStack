@@ -1,3 +1,36 @@
+Environment Setup
+════════════════════<>════════════════════
+sudo apt update && sudo apt upgrade -y
+
+প্রয়োজনীয় প্যাকেজ ইনস্টল করুন:
+	sudo apt install software-properties-common git vim curl wget -y
+
+Set hostname:
+	OpenStack service গুলোর জন্য হোস্টনেম গুরুত্বপূর্ণ। ধরুন, আমরা ব্যবহার করব openstack-controller:
+	sudo hostnamectl set-hostname controller
+
+/etc/hosts এ এটা যোগ করুন:
+	vim /etc/hosts:
+    
+	104.250.139.46  controller
+	206.162.244.147 controller
+
+Add OpenStack Repository:
+    OpenStack yoga repo যোগ করুন:
+	#sudo add-apt-repository cloud-archive:wallaby
+	sudo add-apt-repository cloud-archive:yoga
+	<!--cloud-archive for Yoga only supported on Focal–>
+
+sudo apt update && sudo apt dist-upgrade -y
+
+════════════════════<>════════════════════
+Install OpenStack
+════════════════════<>════════════════════
+sudo apt install python3-openstackclient -y
+
+════════════════════<>════════════════════
+Requirement
+════════════════════<>════════════════════
 01. Database + RabbitMQ + Memcached
 02. Keystone (Identity)
 03. admin-openrc.sh
