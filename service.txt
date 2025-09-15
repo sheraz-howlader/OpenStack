@@ -1,0 +1,8 @@
+service project create:
+    openstack project create --domain Default --description "Service Project" service
+
+delete service/endpoint:
+    syntanx: openstack service delete <duplicate-placement-service-id>
+
+    openstack service delete 5a8e94b3c97b4efa9136d8887eb5a347
+    openstack endpoint delete 1a461a694f464d409f32e8c72138fc38

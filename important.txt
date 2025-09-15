@@ -1,0 +1,19 @@
+Verify (সব ঠিক হলে):
+source /root/admin-openrc.sh
+openstack service list
+openstack endpoint list
+openstack compute service list
+openstack hypervisor list
+
+সব কিছু তৈরি হয়েছে কিনা চেক করো:
+openstack project list
+openstack user list
+openstack role assignment list --project service --names
+
+
+Restart:
+sudo placement-manage db sync
+sudo systemctl restart apache2
+sudo systemctl restart nova-api nova-scheduler nova-conductor
+sudo systemctl restart neutron-server
+
