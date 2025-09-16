@@ -12,3 +12,21 @@ User: admin
 Pass: ADMIN_PASS
 
 ════════════════════<>════════════════════
+Problem: Dashboard a login hocche na
+════════════════════<>════════════════════
+vim /etc/openstack-dashboard/local_settings.py
+
+Update Config:
+# Horizon can be accessed from these hosts/IPs
+ALLOWED_HOSTS = ['*']
+
+# Keystone URL
+OPENSTACK_HOST = "206.162.244.147"
+OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
+#OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+
+যদি ALLOWED_HOSTS এ শুধু localhost লেখা থাকে → বাইরে থেকে অ্যাক্সেস ব্লক করবে। তাই ['*'] বা সরাসরি তোমার সার্ভারের IP দাও।
+
+sudo systemctl restart apache2
+
+════════════════════<>════════════════════

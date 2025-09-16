@@ -58,9 +58,9 @@ openstack role assignment list --project service --names
 
 Restart:
 sudo placement-manage db sync
+sudo systemctl restart nova-api nova-scheduler nova-conductor nova-compute
+sudo systemctl restart neutron-server neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent
 sudo systemctl restart apache2
-sudo systemctl restart nova-api nova-scheduler nova-conductor
-sudo systemctl restart neutron-server
 
 Nova upgrade checks:
 sudo nova-status upgrade check
