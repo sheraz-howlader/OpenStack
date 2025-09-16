@@ -6,7 +6,7 @@ sudo systemctl restart apache2
 ════════════════════<>════════════════════
 Browser:
 ════════════════════<>════════════════════
-http://104.250.139.46/horizon
+http://206.162.244.147/horizon
 
 User: admin
 Pass: ADMIN_PASS

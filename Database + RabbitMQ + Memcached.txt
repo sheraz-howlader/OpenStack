@@ -20,4 +20,6 @@ sudo systemctl start rabbitmq-server
 
 sudo rabbitmqctl add_user openstack RABBIT_PASS
 sudo rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+
+<!--RABBIT_PASS eta 'neutron' and 'nova' config a use hoy-->
 ════════════════════<>════════════════════

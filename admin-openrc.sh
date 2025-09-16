@@ -1,4 +1,4 @@
-sudo nano /root/admin-openrc.sh
+sudo vim /root/admin-openrc.sh
 ════════════════════<>════════════════════
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
@@ -11,7 +11,7 @@ export OS_IMAGE_API_VERSION=2
 export OS_REGION_NAME=RegionOne
 
 ════════════════════<>════════════════════
-ফাইল লোড করা:
+Load file:
 source /root/admin-openrc.sh
 
 ════════════════════<>════════════════════
@@ -26,17 +26,20 @@ openstack --os-username admin --os-password ADMIN_PASS \
 --os-user-domain-name Default --os-project-domain-name Default \
 token issue
 
-<!--যদি টোকেন দেখায়, তাহলে authentication ঠিকঠাক হয়েছে।-->
+<!--যদি টোকেন দেখায়, তাহলে authentication ঠিকঠাক হয়েছে-->
 
 ════════════════════<>════════════════════
-এখন Placement user বানাও:
-openstack user create --domain default --password ADMIN_PASS placement
-openstack role add --project service --user placement admin
+# Create service project:
+# openstack project create --domain Default --description "Service Project" service
 
-openstack service create --name placement --description "Placement API" placement
+# Create Placement user:
+# openstack user create --domain default --password ADMIN_PASS placement
+# openstack role add --project service --user placement admin
 
-openstack endpoint create --region RegionOne placement public http://206.162.244.147:8778
-openstack endpoint create --region RegionOne placement internal http://206.162.244.147:8778
-openstack endpoint create --region RegionOne placement admin http://206.162.244.147:8778
+# openstack service create --name placement --description "Placement API" placement
+
+# openstack endpoint create --region RegionOne placement public http://206.162.244.147:8778
+# openstack endpoint create --region RegionOne placement internal http://206.162.244.147:8778
+# openstack endpoint create --region RegionOne placement admin http://206.162.244.147:8778
 
 ════════════════════<>════════════════════

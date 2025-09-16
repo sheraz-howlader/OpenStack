@@ -6,7 +6,7 @@ sudo apt update && sudo apt upgrade -y
 	sudo apt install software-properties-common git vim curl wget -y
 
 Set hostname:
-	OpenStack service গুলোর জন্য হোস্টনেম গুরুত্বপূর্ণ। ধরুন, আমরা ব্যবহার করব openstack-controller:
+	OpenStack service গুলোর জন্য হোস্টনেম গুরুত্বপূর্ণ। ধরুন, আমরা ব্যবহার করব controller:
 	sudo hostnamectl set-hostname controller
 
 /etc/hosts এ এটা যোগ করুন:
@@ -17,7 +17,6 @@ Set hostname:
 
 Add OpenStack Repository:
     OpenStack yoga repo যোগ করুন:
-	#sudo add-apt-repository cloud-archive:wallaby
 	sudo add-apt-repository cloud-archive:yoga
 	<!--cloud-archive for Yoga only supported on Focal–>
 
@@ -65,5 +64,18 @@ sudo systemctl restart neutron-server
 
 Nova upgrade checks:
 sudo nova-status upgrade check
+
+════════════════════<>════════════════════
+Upadte Password
+════════════════════<>════════════════════
+Admin User:
+SELECT * FROM local_user;
+
+Password Table:
+SELECT * FROM password;
+
+NEWPASS = $2b$12$CZfUv/fTRzmB45oQN5k4sOxY5Yf1N/LFSAMhVlvWihtebKKCLfBzS
+
+update  password set password_hash = '$2b$12$CZfUv/fTRzmB45oQN5k4sOxY5Yf1N/LFSAMhVlvWihtebKKCLfBzS' where local_user_id = 1;
 
 ════════════════════<>════════════════════

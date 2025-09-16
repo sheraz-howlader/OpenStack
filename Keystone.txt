@@ -22,15 +22,15 @@ connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@localhost/keystone
 provider = fernet
 
 Test manually:
-    mysql -ukeystone -pKEYSTONE_DBPASS -h localhost keystone
-    If this fails, Keystone can’t reach its DB → fix password, grants, or networking.
+  mysql -ukeystone -pKEYSTONE_DBPASS -h localhost keystone
+  <!--If this fails, Keystone can’t reach its DB → fix password, grants, or networking-->
 
 ════════════════════<>════════════════════
 Sync Keystone Database
 ════════════════════<>════════════════════
 sudo keystone-manage db_sync
 
-Fernet Key Setup করুন
+Fernet Key Setup:
 sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 
@@ -38,11 +38,12 @@ sudo keystone-manage credential_setup --keystone-user keystone --keystone-group 
 Admin Token & Service Configuration:
 ════════════════════<>════════════════════
 sudo keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
-  --bootstrap-admin-url http://206.162.244.147:5000/v3/ \
-  --bootstrap-internal-url http://206.162.244.147:5000/v3/ \
-  --bootstrap-public-url http://206.162.244.147:5000/v3/ \
-  --bootstrap-region-id RegionOne
+--bootstrap-admin-url http://206.162.244.147:5000/v3/ \
+--bootstrap-internal-url http://206.162.244.147:5000/v3/ \
+--bootstrap-public-url http://206.162.244.147:5000/v3/ \
+--bootstrap-region-id RegionOne
 
+<!--ADMIN_PASS eta 'admin-openrc.sh' a use hoy-->
 ════════════════════<>════════════════════
 Apache2 Restart:
-    sudo systemctl restart apache2
+  sudo systemctl restart apache2
