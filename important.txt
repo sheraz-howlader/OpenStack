@@ -49,6 +49,7 @@ openstack service list
 openstack endpoint list
 openstack compute service list
 openstack hypervisor list
+openstack network list
 
 সব কিছু তৈরি হয়েছে কিনা চেক করো:
 openstack project list

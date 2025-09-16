@@ -29,10 +29,47 @@ project_name = service
 username = glance
 password = GLANCE_PASS
 
+[paste_deploy]
+flavor = keystone
+
+[glance_store]
+stores = file,http
+default_store = file
+filesystem_store_datadir = /var/lib/glance/images/
+
 ════════════════════<>════════════════════
 DB sync + restart
 ════════════════════<>════════════════════
 sudo glance-manage db_sync
 sudo systemctl restart glance-api
+
+════════════════════<>════════════════════
+Keystone User / Service / Endpoint তৈরি করো
+════════════════════<>════════════════════
+Create Glance User:
+openstack user create --domain Default --password GLANCE_PASS glance
+openstack role add --project service --user glance admin
+openstack service create --name glance --description "OpenStack Image" image
+
+openstack endpoint create --region RegionOne image public   http://206.162.244.147:9292
+openstack endpoint create --region RegionOne image internal http://206.162.244.147:9292
+openstack endpoint create --region RegionOne image admin    http://206.162.244.147:9292
+
+════════════════════<>════════════════════
+Image/OS
+════════════════════<>════════════════════
+Download Ubuntu Cloud Image:
+cd /root
+wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+
+
+Upload Image:
+openstack image create "Ubuntu-20.04" \
+--file ubuntu-20.04-server-cloudimg-amd64.img \
+--disk-format qcow2 --container-format bare --public
+
+
+image list:
+openstack image list
 
 ════════════════════<>════════════════════
