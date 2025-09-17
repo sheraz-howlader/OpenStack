@@ -50,6 +50,15 @@ openstack endpoint list
 openstack compute service list
 openstack hypervisor list
 openstack network list
+openstack network agent list
+
+Instance list:
+openstack server list
+
+openstack resource provider list
+openstack port list
+openstack port list --server test-vm
+
 
 সব কিছু তৈরি হয়েছে কিনা চেক করো:
 openstack project list
